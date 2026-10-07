@@ -1,16 +1,16 @@
 /*
-  Food Tracker V2
-  Local Nutrition Database
+  =========================================
+  FOOD TRACKER V2.1
+  LOCAL NUTRITION DATABASE
+  =========================================
 
-  Foods using:
-      type: "weight"
+  "weight" foods:
+  nutrition is stored per 100g.
 
-  store nutrition per 100g.
+  "item" foods:
+  nutrition is stored per item.
 
-  Foods using:
-      type: "item"
-
-  store nutrition per individual item.
+  Values are generic estimates.
 */
 
 
@@ -44,6 +44,19 @@ const FOOD_DATABASE = [
     protein: 0.3,
 
     defaultAmount: 180
+  },
+
+  {
+    name: "Mixed berries",
+    category: "Fruit",
+
+    type: "weight",
+    unit: "g",
+
+    calories: 50,
+    protein: 1,
+
+    defaultAmount: 100
   },
 
 
@@ -360,6 +373,24 @@ const FOOD_DATABASE = [
     protein: 2.9,
 
     defaultAmount: 100
+  },
+
+
+  // ========================================
+  // SWEETENERS
+  // ========================================
+
+  {
+    name: "Honey",
+    category: "Sweeteners",
+
+    type: "weight",
+    unit: "g",
+
+    calories: 304,
+    protein: 0.3,
+
+    defaultAmount: 10
   },
 
 
