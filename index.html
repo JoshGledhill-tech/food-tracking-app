@@ -9,44 +9,96 @@
     content="width=device-width, initial-scale=1.0"
   >
 
-  <meta
-    name="theme-color"
-    content="#ffffff"
-  >
+  <meta name="theme-color" content="#ffffff">
 
-  <title>Food Tracker V2</title>
+  <title>Food Tracker V2.1</title>
 
-  <link
-    rel="stylesheet"
-    href="style.css"
-  >
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
   <main class="container">
 
-    <!-- ============================= -->
     <!-- HEADER -->
-    <!-- ============================= -->
 
     <header class="header">
 
       <div>
         <h1>Food Tracker</h1>
-        <p id="currentDate"></p>
+        <p>My food diary</p>
       </div>
 
       <span class="version">
-        V2
+        V2.1
       </span>
 
     </header>
 
 
-    <!-- ============================= -->
-    <!-- DAILY SUMMARY -->
-    <!-- ============================= -->
+    <!-- ===================================
+         DATE NAVIGATION
+    ==================================== -->
+
+    <section class="card date-card">
+
+      <div class="date-navigation">
+
+        <button
+          id="previousDayButton"
+          class="date-arrow"
+          type="button"
+          aria-label="Previous day"
+        >
+          ‹
+        </button>
+
+        <div class="selected-date-area">
+
+          <strong id="selectedDateLabel">
+            Today
+          </strong>
+
+          <span id="selectedDateSubLabel"></span>
+
+        </div>
+
+        <button
+          id="nextDayButton"
+          class="date-arrow"
+          type="button"
+          aria-label="Next day"
+        >
+          ›
+        </button>
+
+      </div>
+
+
+      <div class="date-tools">
+
+        <input
+          id="datePicker"
+          type="date"
+          aria-label="Choose diary date"
+        >
+
+        <button
+          id="todayButton"
+          class="secondary-button"
+          type="button"
+        >
+          Today
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ===================================
+         DAILY SUMMARY
+    ==================================== -->
 
     <section class="summary-grid">
 
@@ -92,13 +144,19 @@
     </section>
 
 
-    <!-- ============================= -->
-    <!-- ADD FOOD -->
-    <!-- ============================= -->
+    <!-- ===================================
+         ADD FOOD
+    ==================================== -->
 
     <section class="card">
 
-      <h2>Add food</h2>
+      <div class="section-heading">
+
+        <h2>Add food</h2>
+
+        <span id="addFoodDateLabel"></span>
+
+      </div>
 
 
       <!-- Meal -->
@@ -217,15 +275,11 @@
       </div>
 
 
-      <!-- Selected food information -->
-
       <div
         id="nutritionInfo"
         class="nutrition-info hidden"
       ></div>
 
-
-      <!-- Buttons -->
 
       <div class="button-row">
 
@@ -250,19 +304,23 @@
     </section>
 
 
-    <!-- ============================= -->
-    <!-- TODAY'S FOOD -->
-    <!-- ============================= -->
+    <!-- ===================================
+         DIARY
+    ==================================== -->
 
     <section class="card">
 
       <div class="section-heading">
 
-        <h2>Today</h2>
+        <div>
+          <h2 id="diaryHeading">
+            Today
+          </h2>
 
-        <span id="foodCount">
-          0 items
-        </span>
+          <span id="foodCount">
+            0 items
+          </span>
+        </div>
 
       </div>
 
@@ -270,7 +328,7 @@
       <div id="foodList">
 
         <div class="empty-state">
-          Nothing logged yet.
+          Nothing logged for this day.
         </div>
 
       </div>
@@ -278,29 +336,23 @@
     </section>
 
 
-    <!-- ============================= -->
-    <!-- FOOTER -->
-    <!-- ============================= -->
-
     <footer>
 
-      Food Tracker V2
+      Food Tracker V2.1
 
       <br>
 
-      Data is stored locally on this device.
+      Diary data is stored locally on this device.
 
     </footer>
 
   </main>
 
 
-  <!-- Database first -->
-
+  <!-- Nutrition database -->
   <script src="food-database.js"></script>
 
-  <!-- App logic second -->
-
+  <!-- Application -->
   <script src="app.js"></script>
 
 </body>
