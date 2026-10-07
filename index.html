@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#ffffff"
+  >
+
+  <title>Food Tracker V2</title>
+
+  <link
+    rel="stylesheet"
+    href="style.css"
+  >
+</head>
+
+<body>
+
+  <main class="container">
+
+    <!-- ============================= -->
+    <!-- HEADER -->
+    <!-- ============================= -->
+
+    <header class="header">
+
+      <div>
+        <h1>Food Tracker</h1>
+        <p id="currentDate"></p>
+      </div>
+
+      <span class="version">
+        V2
+      </span>
+
+    </header>
+
+
+    <!-- ============================= -->
+    <!-- DAILY SUMMARY -->
+    <!-- ============================= -->
+
+    <section class="summary-grid">
+
+      <div class="summary-card">
+
+        <span class="summary-label">
+          Calories
+        </span>
+
+        <strong
+          class="summary-value"
+          id="totalCalories"
+        >
+          0
+        </strong>
+
+        <span class="summary-unit">
+          kcal
+        </span>
+
+      </div>
+
+
+      <div class="summary-card">
+
+        <span class="summary-label">
+          Protein
+        </span>
+
+        <strong
+          class="summary-value"
+          id="totalProtein"
+        >
+          0
+        </strong>
+
+        <span class="summary-unit">
+          grams
+        </span>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- ADD FOOD -->
+    <!-- ============================= -->
+
+    <section class="card">
+
+      <h2>Add food</h2>
+
+
+      <!-- Meal -->
+
+      <label for="meal">
+        Meal
+      </label>
+
+      <select id="meal">
+
+        <option value="Breakfast">
+          Breakfast
+        </option>
+
+        <option value="Lunch">
+          Lunch
+        </option>
+
+        <option value="Dinner">
+          Dinner
+        </option>
+
+        <option value="Snack">
+          Snack
+        </option>
+
+      </select>
+
+
+      <!-- Food search -->
+
+      <label for="food">
+        Food
+      </label>
+
+      <div class="search-wrapper">
+
+        <input
+          id="food"
+          type="text"
+          autocomplete="off"
+          placeholder="Start typing e.g. salmon"
+        >
+
+        <div
+          id="suggestions"
+          class="suggestions"
+        ></div>
+
+      </div>
+
+
+      <!-- Amount -->
+
+      <label for="amount">
+        Amount
+      </label>
+
+      <div class="amount-row">
+
+        <input
+          id="amount"
+          type="number"
+          min="0"
+          step="0.1"
+          placeholder="Amount"
+        >
+
+        <span
+          id="unit"
+          class="unit"
+        >
+          g
+        </span>
+
+      </div>
+
+
+      <!-- Nutrition -->
+
+      <div class="nutrition-grid">
+
+        <div>
+
+          <label for="calories">
+            Calories
+          </label>
+
+          <input
+            id="calories"
+            type="number"
+            min="0"
+            step="1"
+            placeholder="kcal"
+          >
+
+        </div>
+
+
+        <div>
+
+          <label for="protein">
+            Protein
+          </label>
+
+          <input
+            id="protein"
+            type="number"
+            min="0"
+            step="0.1"
+            placeholder="grams"
+          >
+
+        </div>
+
+      </div>
+
+
+      <!-- Selected food information -->
+
+      <div
+        id="nutritionInfo"
+        class="nutrition-info hidden"
+      ></div>
+
+
+      <!-- Buttons -->
+
+      <div class="button-row">
+
+        <button
+          id="addFoodButton"
+          class="primary-button"
+          type="button"
+        >
+          Add food
+        </button>
+
+        <button
+          id="clearButton"
+          class="secondary-button"
+          type="button"
+        >
+          Clear
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- TODAY'S FOOD -->
+    <!-- ============================= -->
+
+    <section class="card">
+
+      <div class="section-heading">
+
+        <h2>Today</h2>
+
+        <span id="foodCount">
+          0 items
+        </span>
+
+      </div>
+
+
+      <div id="foodList">
+
+        <div class="empty-state">
+          Nothing logged yet.
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ============================= -->
+    <!-- FOOTER -->
+    <!-- ============================= -->
+
+    <footer>
+
+      Food Tracker V2
+
+      <br>
+
+      Data is stored locally on this device.
+
+    </footer>
+
+  </main>
+
+
+  <!-- Database first -->
+
+  <script src="food-database.js"></script>
+
+  <!-- App logic second -->
+
+  <script src="app.js"></script>
+
+</body>
+
+</html>
