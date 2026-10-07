@@ -1,360 +1,658 @@
-<!DOCTYPE html>
-<html lang="en">
+/* =========================================
+   BASE
+========================================= */
 
-<head>
-  <meta charset="UTF-8">
+* {
+  box-sizing: border-box;
+}
 
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
+html {
+  font-family:
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+}
 
-  <meta name="theme-color" content="#ffffff">
+body {
+  margin: 0;
 
-  <title>Food Tracker V2.1</title>
+  background: #f4f5f7;
+  color: #202124;
+}
 
-  <link rel="stylesheet" href="style.css">
-</head>
+button,
+input,
+select {
+  font: inherit;
+}
 
-<body>
+.container {
+  width: 100%;
+  max-width: 650px;
 
-  <main class="container">
+  margin: 0 auto;
 
-    <!-- HEADER -->
+  padding:
+    24px
+    16px
+    60px;
+}
 
-    <header class="header">
 
-      <div>
-        <h1>Food Tracker</h1>
-        <p>My food diary</p>
-      </div>
+/* =========================================
+   HEADER
+========================================= */
 
-      <span class="version">
-        V2.1
-      </span>
+.header {
+  display: flex;
 
-    </header>
+  align-items: center;
+  justify-content: space-between;
 
+  margin-bottom: 20px;
+}
 
-    <!-- ===================================
-         DATE NAVIGATION
-    ==================================== -->
+.header h1 {
+  margin: 0;
+  font-size: 28px;
+}
 
-    <section class="card date-card">
+.header p {
+  margin: 4px 0 0;
 
-      <div class="date-navigation">
+  color: #6b7280;
+}
 
-        <button
-          id="previousDayButton"
-          class="date-arrow"
-          type="button"
-          aria-label="Previous day"
-        >
-          ‹
-        </button>
+.version {
+  padding: 6px 10px;
 
-        <div class="selected-date-area">
+  border-radius: 999px;
 
-          <strong id="selectedDateLabel">
-            Today
-          </strong>
+  background: #202124;
+  color: white;
 
-          <span id="selectedDateSubLabel"></span>
+  font-size: 12px;
+  font-weight: 700;
+}
 
-        </div>
 
-        <button
-          id="nextDayButton"
-          class="date-arrow"
-          type="button"
-          aria-label="Next day"
-        >
-          ›
-        </button>
+/* =========================================
+   CARDS
+========================================= */
 
-      </div>
+.card {
+  margin-bottom: 18px;
 
+  padding: 20px;
 
-      <div class="date-tools">
+  background: white;
 
-        <input
-          id="datePicker"
-          type="date"
-          aria-label="Choose diary date"
-        >
+  border-radius: 18px;
 
-        <button
-          id="todayButton"
-          class="secondary-button"
-          type="button"
-        >
-          Today
-        </button>
+  box-shadow:
+    0 2px 10px
+    rgba(0, 0, 0, 0.05);
+}
 
-      </div>
+.card h2 {
+  margin: 0;
 
-    </section>
+  font-size: 20px;
+}
 
 
-    <!-- ===================================
-         DAILY SUMMARY
-    ==================================== -->
+/* =========================================
+   DATE NAVIGATION
+========================================= */
 
-    <section class="summary-grid">
+.date-card {
+  padding: 16px 20px;
+}
 
-      <div class="summary-card">
+.date-navigation {
+  display: grid;
 
-        <span class="summary-label">
-          Calories
-        </span>
+  grid-template-columns:
+    48px 1fr 48px;
 
-        <strong
-          class="summary-value"
-          id="totalCalories"
-        >
-          0
-        </strong>
+  align-items: center;
 
-        <span class="summary-unit">
-          kcal
-        </span>
+  gap: 10px;
+}
 
-      </div>
+.date-arrow {
+  width: 48px;
+  height: 48px;
 
+  padding: 0;
 
-      <div class="summary-card">
+  border: 1px solid #e5e7eb;
+  border-radius: 50%;
 
-        <span class="summary-label">
-          Protein
-        </span>
+  background: #f8f8f8;
+  color: #202124;
 
-        <strong
-          class="summary-value"
-          id="totalProtein"
-        >
-          0
-        </strong>
+  font-size: 32px;
+  line-height: 1;
 
-        <span class="summary-unit">
-          grams
-        </span>
+  cursor: pointer;
+}
 
-      </div>
+.date-arrow:hover {
+  background: #eeeeee;
+}
 
-    </section>
+.date-arrow:disabled {
+  opacity: 0.3;
+  cursor: default;
+}
 
+.selected-date-area {
+  display: flex;
+  flex-direction: column;
 
-    <!-- ===================================
-         ADD FOOD
-    ==================================== -->
+  align-items: center;
 
-    <section class="card">
+  text-align: center;
+}
 
-      <div class="section-heading">
+#selectedDateLabel {
+  font-size: 17px;
+}
 
-        <h2>Add food</h2>
+#selectedDateSubLabel {
+  margin-top: 3px;
 
-        <span id="addFoodDateLabel"></span>
+  color: #6b7280;
 
-      </div>
+  font-size: 12px;
+}
 
+.date-tools {
+  display: grid;
 
-      <!-- Meal -->
+  grid-template-columns:
+    1fr auto;
 
-      <label for="meal">
-        Meal
-      </label>
+  gap: 10px;
 
-      <select id="meal">
+  margin-top: 14px;
+}
 
-        <option value="Breakfast">
-          Breakfast
-        </option>
+.date-tools input {
+  margin: 0;
+}
 
-        <option value="Lunch">
-          Lunch
-        </option>
 
-        <option value="Dinner">
-          Dinner
-        </option>
+/* =========================================
+   SUMMARY
+========================================= */
 
-        <option value="Snack">
-          Snack
-        </option>
+.summary-grid {
+  display: grid;
 
-      </select>
+  grid-template-columns:
+    1fr 1fr;
 
+  gap: 12px;
 
-      <!-- Food search -->
+  margin-bottom: 18px;
+}
 
-      <label for="food">
-        Food
-      </label>
+.summary-card {
+  display: flex;
+  flex-direction: column;
 
-      <div class="search-wrapper">
+  padding: 18px;
 
-        <input
-          id="food"
-          type="text"
-          autocomplete="off"
-          placeholder="Start typing e.g. salmon"
-        >
+  background: white;
 
-        <div
-          id="suggestions"
-          class="suggestions"
-        ></div>
+  border-radius: 18px;
 
-      </div>
+  box-shadow:
+    0 2px 10px
+    rgba(0, 0, 0, 0.05);
+}
 
+.summary-label {
+  margin-bottom: 4px;
 
-      <!-- Amount -->
+  color: #6b7280;
 
-      <label for="amount">
-        Amount
-      </label>
+  font-size: 13px;
+}
 
-      <div class="amount-row">
+.summary-value {
+  font-size: 30px;
+}
 
-        <input
-          id="amount"
-          type="number"
-          min="0"
-          step="0.1"
-          placeholder="Amount"
-        >
+.summary-unit {
+  color: #6b7280;
 
-        <span
-          id="unit"
-          class="unit"
-        >
-          g
-        </span>
+  font-size: 13px;
+}
 
-      </div>
 
+/* =========================================
+   FORM
+========================================= */
 
-      <!-- Nutrition -->
+label {
+  display: block;
 
-      <div class="nutrition-grid">
+  margin: 14px 0 6px;
 
-        <div>
+  font-size: 14px;
+  font-weight: 650;
+}
 
-          <label for="calories">
-            Calories
-          </label>
+input,
+select {
+  width: 100%;
 
-          <input
-            id="calories"
-            type="number"
-            min="0"
-            step="1"
-            placeholder="kcal"
-          >
+  padding: 12px 13px;
 
-        </div>
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
 
+  background: white;
+  color: #202124;
 
-        <div>
+  outline: none;
+}
 
-          <label for="protein">
-            Protein
-          </label>
+input:focus,
+select:focus {
+  border-color: #202124;
+}
 
-          <input
-            id="protein"
-            type="number"
-            min="0"
-            step="0.1"
-            placeholder="grams"
-          >
 
-        </div>
+/* =========================================
+   FOOD SEARCH
+========================================= */
 
-      </div>
+.search-wrapper {
+  position: relative;
+}
 
+.suggestions {
+  position: absolute;
 
-      <div
-        id="nutritionInfo"
-        class="nutrition-info hidden"
-      ></div>
+  z-index: 20;
 
+  top: calc(100% + 4px);
+  left: 0;
+  right: 0;
 
-      <div class="button-row">
+  overflow: hidden;
 
-        <button
-          id="addFoodButton"
-          class="primary-button"
-          type="button"
-        >
-          Add food
-        </button>
+  background: white;
 
-        <button
-          id="clearButton"
-          class="secondary-button"
-          type="button"
-        >
-          Clear
-        </button>
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
 
-      </div>
+  box-shadow:
+    0 8px 20px
+    rgba(0, 0, 0, 0.12);
+}
 
-    </section>
+.suggestions:empty {
+  display: none;
+}
 
+.suggestion {
+  display: flex;
 
-    <!-- ===================================
-         DIARY
-    ==================================== -->
+  width: 100%;
 
-    <section class="card">
+  justify-content: space-between;
+  align-items: center;
 
-      <div class="section-heading">
+  gap: 12px;
 
-        <div>
-          <h2 id="diaryHeading">
-            Today
-          </h2>
+  padding: 12px 14px;
 
-          <span id="foodCount">
-            0 items
-          </span>
-        </div>
+  border: 0;
+  border-bottom: 1px solid #eeeeee;
 
-      </div>
+  background: white;
+  color: #202124;
 
+  text-align: left;
 
-      <div id="foodList">
+  cursor: pointer;
+}
 
-        <div class="empty-state">
-          Nothing logged for this day.
-        </div>
+.suggestion:last-child {
+  border-bottom: 0;
+}
 
-      </div>
+.suggestion:hover {
+  background: #f5f5f5;
+}
 
-    </section>
+.suggestion-name {
+  font-weight: 600;
+}
 
+.suggestion-info {
+  color: #6b7280;
 
-    <footer>
+  font-size: 12px;
 
-      Food Tracker V2.1
+  text-align: right;
+}
 
-      <br>
 
-      Diary data is stored locally on this device.
+/* =========================================
+   AMOUNT
+========================================= */
 
-    </footer>
+.amount-row {
+  display: grid;
 
-  </main>
+  grid-template-columns:
+    1fr 80px;
 
+  gap: 10px;
 
-  <!-- Nutrition database -->
-  <script src="food-database.js"></script>
+  align-items: center;
+}
 
-  <!-- Application -->
-  <script src="app.js"></script>
+.unit {
+  color: #6b7280;
 
-</body>
+  font-weight: 600;
+}
 
-</html>
+
+/* =========================================
+   NUTRITION
+========================================= */
+
+.nutrition-grid {
+  display: grid;
+
+  grid-template-columns:
+    1fr 1fr;
+
+  gap: 12px;
+}
+
+.nutrition-info {
+  margin-top: 14px;
+
+  padding: 12px;
+
+  background: #f5f5f5;
+
+  border-radius: 10px;
+
+  color: #555;
+
+  font-size: 13px;
+}
+
+.hidden {
+  display: none;
+}
+
+
+/* =========================================
+   BUTTONS
+========================================= */
+
+.button-row {
+  display: grid;
+
+  grid-template-columns:
+    2fr 1fr;
+
+  gap: 10px;
+
+  margin-top: 20px;
+}
+
+button {
+  border-radius: 10px;
+
+  cursor: pointer;
+}
+
+.primary-button {
+  padding: 13px;
+
+  border: 0;
+
+  background: #202124;
+  color: white;
+
+  font-weight: 700;
+}
+
+.primary-button:hover {
+  background: #383a3d;
+}
+
+.secondary-button {
+  padding: 12px 14px;
+
+  border: 1px solid #d1d5db;
+
+  background: white;
+  color: #202124;
+
+  font-weight: 600;
+}
+
+.secondary-button:hover {
+  background: #f5f5f5;
+}
+
+
+/* =========================================
+   SECTION HEADING
+========================================= */
+
+.section-heading {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  gap: 10px;
+
+  margin-bottom: 18px;
+}
+
+.section-heading span {
+  display: block;
+
+  margin-top: 3px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   MEAL GROUPS
+========================================= */
+
+.meal-group {
+  margin-top: 22px;
+}
+
+.meal-group:first-child {
+  margin-top: 0;
+}
+
+.meal-title-row {
+  display: flex;
+
+  justify-content: space-between;
+  align-items: center;
+
+  margin-bottom: 6px;
+}
+
+.meal-title {
+  color: #6b7280;
+
+  font-size: 13px;
+  font-weight: 700;
+
+  text-transform: uppercase;
+
+  letter-spacing: 0.05em;
+}
+
+.meal-total {
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   FOOD ITEM
+========================================= */
+
+.food-item {
+  display: grid;
+
+  grid-template-columns:
+    1fr auto;
+
+  gap: 12px;
+
+  padding: 12px 0;
+
+  border-bottom: 1px solid #eeeeee;
+}
+
+.food-item:last-child {
+  border-bottom: 0;
+}
+
+.food-name {
+  font-weight: 650;
+}
+
+.food-amount {
+  margin-top: 2px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+.food-values {
+  text-align: right;
+}
+
+.food-calories {
+  font-weight: 650;
+}
+
+.food-protein {
+  margin-top: 2px;
+
+  color: #6b7280;
+
+  font-size: 12px;
+}
+
+
+/* =========================================
+   DELETE
+========================================= */
+
+.delete-button {
+  margin-top: 6px;
+
+  padding: 0;
+
+  border: 0;
+
+  background: transparent;
+
+  color: #9b3b3b;
+
+  font-size: 12px;
+}
+
+.delete-button:hover {
+  text-decoration: underline;
+}
+
+
+/* =========================================
+   EMPTY
+========================================= */
+
+.empty-state {
+  padding: 30px 10px;
+
+  color: #8a8a8a;
+
+  text-align: center;
+}
+
+
+/* =========================================
+   FOOTER
+========================================= */
+
+footer {
+  margin-top: 28px;
+
+  color: #8a8a8a;
+
+  font-size: 12px;
+
+  text-align: center;
+
+  line-height: 1.6;
+}
+
+
+/* =========================================
+   MOBILE
+========================================= */
+
+@media (max-width: 420px) {
+
+  .container {
+    padding:
+      18px
+      12px
+      50px;
+  }
+
+  .summary-value {
+    font-size: 26px;
+  }
+
+  .card {
+    padding: 16px;
+  }
+
+  .date-card {
+    padding: 14px;
+  }
+
+  .date-navigation {
+    grid-template-columns:
+      44px 1fr 44px;
+  }
+
+  .date-arrow {
+    width: 44px;
+    height: 44px;
+  }
+
+}
